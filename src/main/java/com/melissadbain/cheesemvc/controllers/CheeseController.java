@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import com.melissadbain.cheesemvc.models.Cheese;
 import com.melissadbain.cheesemvc.models.CheeseData;
 
-
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
@@ -60,6 +59,7 @@ public class CheeseController {
     public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
 
         for (int cheeseId : cheeseIds) {
+
             CheeseData.remove(cheeseId);
         }
 

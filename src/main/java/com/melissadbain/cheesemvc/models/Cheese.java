@@ -24,26 +24,32 @@ public class Cheese {
     }
 
     public int getCheeseId() {
+
         return cheeseId;
     }
 
     public void setCheeseId(int aCheeseId) {
+
         cheeseId = aCheeseId;
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String aName) {
+
         name = aName;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String aDescription) {
+
         description = aDescription;
     }
 }
