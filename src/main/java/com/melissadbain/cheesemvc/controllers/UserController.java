@@ -34,24 +34,19 @@ public class UserController {
     }
 
     @RequestMapping(value="add", method = RequestMethod.POST)
-    public String processAddUserForm(@ModelAttribute @Valid User newUser, Errors errors,
-                                     String verify, Model model) {
+    public String processAddUserForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
 
-        model.addAttribute(newUser);
-
-        if (errors.hasErrors() || !newUser.getPassword().equals(verify)) {
-
-            if (!newUser.getPassword().equals(verify)) {
-
-                model.addAttribute("title", "My Cheeses: New User");
-                model.addAttribute("noMatch", "passwords must match");
-            }
-
+        if (errors.hasErrors()){
+            model.addAttribute("title", "Add User");
+            model.addAttribute(newUser);
+            model.addAttribute("username", newUser.getUsername());
+            model.addAttribute("email", newUser.getEmail());
             return "user/add";
         }
 
         UserData.add(newUser);
-
+        model.addAttribute("user", newUser);
+        model.addAttribute("title", "All Users");
         return "redirect:";
     }
 
