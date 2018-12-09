@@ -1,5 +1,6 @@
 package com.melissadbain.cheesemvc.controllers;
 
+import com.melissadbain.cheesemvc.models.CheeseType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class CheeseController {
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("title", "My Cheeses");
+        model.addAttribute("cheeses", CheeseData.getAll());
 
         return "cheese/index";
     }
@@ -26,6 +27,7 @@ public class CheeseController {
 
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
+        model.addAttribute("cheeseTypes", CheeseType.values());
 
         return "cheese/add";
     }
@@ -37,6 +39,7 @@ public class CheeseController {
 
             model.addAttribute("title", "Add Cheese");
             model.addAttribute(newCheese);
+            model.addAttribute("cheeseTypes", CheeseType.values());
 
             return "cheese/add";
         }
@@ -49,8 +52,8 @@ public class CheeseController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveCheeseForm(Model model) {
 
-        model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("title", "Remove Cheese");
+        model.addAttribute("cheeses", CheeseData.getAll());
 
         return "cheese/remove";
     }
@@ -71,9 +74,10 @@ public class CheeseController {
 
         Cheese toEdit = CheeseData.getById(cheeseId);
 
-        model.addAttribute("cheese", toEdit);
         model.addAttribute("title", "Edit Cheese " +
                 toEdit.getName() + "(id=" + cheeseId + ")");
+        model.addAttribute("cheese", toEdit);
+        model.addAttribute("cheeseTypes", CheeseType.values());
 
         return "cheese/edit";
     }
@@ -85,15 +89,18 @@ public class CheeseController {
 
         if (errors.hasErrors()) {
 
-            model.addAttribute("cheese", cheese);
             model.addAttribute("title", "Edit Cheese " +
                     toEdit.getName() + "(id=" + cheeseId + ")");
+            model.addAttribute("cheese", cheese);
+            model.addAttribute("cheeseTypes", CheeseType.values());
 
             return "cheese/edit";
         }
 
-        toEdit.setDescription(cheese.getDescription());
         toEdit.setName(cheese.getName());
+        toEdit.setDescription(cheese.getDescription());
+        toEdit.setType(cheese.getType());
+        toEdit.setRating(cheese.getRating());
 
         return "redirect:";
     }

@@ -8,15 +8,15 @@ import java.util.Date;
 public class User {
 
     @NotNull
-    @Size(min=5, max=15, message = "please keep your username between 5 and 20 characters")
+    @Size(min = 5, max = 15, message = "please keep your username between 5 and 15 characters")
     private String username;
 
     @NotNull
-    @Size(min=8, message = "please enter a valid email")
+    @Size(min = 8, message = "please enter a valid email")
     private String email;
 
     @NotNull
-    @Size(min=8, message = "Password must be at least 8 characters long")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
 
     private int userId;
@@ -26,6 +26,7 @@ public class User {
     public User(String aUsername, String aEmail, String aPassword) {
 
         this();
+
         username = aUsername;
         email = aEmail;
         password = aPassword;

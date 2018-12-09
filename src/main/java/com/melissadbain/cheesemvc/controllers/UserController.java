@@ -18,8 +18,8 @@ public class UserController {
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("users", UserData.getAll());
         model.addAttribute("title", "My Cheeses: Users");
+        model.addAttribute("users", UserData.getAll());
 
         return "user/index";
     }
@@ -59,6 +59,7 @@ public class UserController {
     public String displayHome(Model model, @PathVariable int userId) {
 
         User toDisplay = UserData.getByUserId(userId);
+
         model.addAttribute("title", "My Cheeses: Display User");
         model.addAttribute("user", toDisplay);
 

@@ -13,7 +13,9 @@
         <tr th:each="cheese : ${cheeses}">
             <td> <input th:type="checkbox" name="cheeseIds" th:id="${cheese.cheeseId}" th:value="${cheese.cheeseId}"/>&nbsp;&nbsp;&nbsp; </td>
             <td th:text="${cheese.name} + '&nbsp;&nbsp;&nbsp;'">Cheese</td>
-            <td th:text="${cheese.description}">Description</td>
+            <td th:text="${cheese.description} + '&nbsp'">Description</td>
+            <td th:text="'(' + ${cheese.type.name} + ')&nbsp;&nbsp;&nbsp;'">Cheese Type</td>
+            <td th:text="${cheese.rating} + '&nbsp'">Rating</td>
         </tr>
 
         <tr>
